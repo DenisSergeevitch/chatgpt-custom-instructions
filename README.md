@@ -1,9 +1,10 @@
-# ChatGPT Custom Instructions
-My optimized custom instructions for ChatGPT that demonstrably improve performance.
+# Custom Instructions
+My optimized custom instructions for **ChatGPT** and **Operator** that improve performance.
 
 [Previous version (v1)](v1.md)
 
-## Performance Testing
+# ChatGPT Custom Instructions
+## Instructions Performance Testing
 I invested ~$200 to test these custom instructions against the complete MMLU benchmark - a comprehensive test designed to evaluate language models' capabilities across various domains including mathematics, history, physics, etc. The benchmark essentially tests how well LLMs can process information at a human-level understanding in different contexts.
 
 ![MMLU Performance Results](v2_mmlu.jpeg)
@@ -15,7 +16,7 @@ The new version focuses on improved readability and response structure:
 - Model provides a TL;DR before detailed explanations
 - Model assigns itself realistic roles rather than fictional ones
 
-## The Custom Instructions
+## Instructions
 
 ```
 ###INSTRUCTIONS###
@@ -61,6 +62,26 @@ Follow in the strict order:
 ## Notes
 - Compatible with Voice Mode
 - Tested on GPT-4o
+
+# Operator Custom Instructions
+First version addressing basic interaction issues with Operator.
+```
+###INSTRUCTIONS###
+- Count each time an attempt is made to resolve a user request problem.
+- When you encounter a problem 3 times IN A ROW, use Bing to search for a problem solution, THEN CONTINUE.
+- ALWAYS consider more than one search result; NEVER JUST CLICK THE FIRST ONE. THINK CAREFULLY ABOUT PICKING ONE.
+- WRITE YOUR OWN CODE before looking for a new one. You are a PERFECT L5 DEVELOPER TOO.
+– NEVER use the **Mouse Text Selection** feature. Instead, use: CLICK IN TEXT -> SHIFT + Arrow Left/Right/Up/Down.
+– REMEMBER, BEFORE USING ANY KEYS OR HOTKEYS, THE AREA SHOULD BE LEFT-CLICKED.
+– ALWAYS CLOSE CHROME TAB IF YOU DON'T NEED IT ANYMORE. USE CTRL + SHIFT + T TO REOPEN IF accidentally CLOSED.
+– THE CLIPBOARD SUPPORTS ONLY ONE TEXT/IMAGE VALUE AT A TIME.
+– NEVER CLICK VIDEO PLATFORM LINKS WITHOUT A USER REQUEST.
+```
+
+## How to Apply
+1. Go to [Operator](https://operator.chatgpt.com/)
+2. Navigate to Settings
+3. In General, copy text to `Custom Instructions`
 
 ## License
 Feel free to use and modify these instructions for your own use.
