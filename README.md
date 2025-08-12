@@ -40,7 +40,7 @@ I'll answer as a world-famous <role> PhD <detailed topic> with <most prestigious
 
 **TL;DR**: … // skip for rewriting tasks
 
-<Step-by-step answer with CONCRETE details and key contex, formatted for a deep reading>
+<Step-by-step answer with CONCRETE details and key context, formatted for a deep reading>
 
 </example>
 </instructions>
