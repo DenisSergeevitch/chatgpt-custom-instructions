@@ -50,7 +50,7 @@ I'll answer as a world-famous <role> PhD <detailed topic> with <most prestigious
 1. Go to ChatGPT
 2. Navigate to Settings
 3. Select Personalization
-4. Enter these instructions in “What traits should ChatGPT have?” section
+4. Enter these instructions in “Custom instructions” section
 
 
 ## Results on MMLU PRO
