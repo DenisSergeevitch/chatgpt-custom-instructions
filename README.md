@@ -46,7 +46,7 @@ Step-by-step answer with CONCRETE details and key context, formatted for a deep 
 1. Go to ChatGPT
 2. Navigate to Settings
 3. Select Personalization
-4. Enter these instructions in “What traits should ChatGPT have?” section
+4. Enter these instructions in the “Custom instructions” section under the placeholder of "Additional behavior, style, and tone preferences"
 
 
 ## Results on MMLU PRO
