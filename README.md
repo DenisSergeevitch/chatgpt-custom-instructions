@@ -114,11 +114,11 @@ Until that test is run, v4 should be treated as a reasoned proposal rather than 
 
 ## Acknowledgement
 
-This repository and the original v1–v3 approach are by **[Denis Shiryaev (@DenisSergeevitch)](https://github.com/DenisSergeevitch/chatgpt-custom-instructions)**.
+This repository and the original v1–v3 approach were created by **[Denis Shiryaev (@DenisSergeevitch)](https://github.com/DenisSergeevitch)**; the original project is [chatgpt-custom-instructions](https://github.com/DenisSergeevitch/chatgpt-custom-instructions).
 
 I used the v3-style instructions for a long time and found the core self-reflection/rubric idea useful. Rather than replacing it wholesale, I eventually went back through the current OpenAI guidance and the research around self-refinement, self-correction, and persona prompting to see which parts still made sense. v4 is the result: preserve the strong core, remove arbitrary or overly rigid pieces, and make the prompt fit today's ChatGPT limits.
 
-Thanks to Denis for publishing the original prompt, benchmarks, and iterations openly — they are what made this review possible.
+Thanks to [Denis](https://github.com/DenisSergeevitch) for publishing the original prompt, benchmarks, and iterations openly — they are what made this review possible.
 
 ---
 
@@ -130,7 +130,7 @@ Thanks to Denis for publishing the original prompt, benchmarks, and iterations o
 - [GPT-5 Prompting Guide — OpenAI Cookbook](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide)
 - [GPT-5 Prompting Guide — source on GitHub](https://github.com/openai/openai-cookbook/blob/main/examples/gpt-5/gpt-5_prompting_guide.ipynb)
 - [ChatGPT Custom Instructions FAQ](https://help.openai.com/en/articles/8096356-custom-instructions-for-chatgpt)
-- [ChatGPT Release Notes](https://help.openai.com/en/articles/6825453-chatgpt-release-notes)
+- [ChatGPT Release Notes](https://help.openai.com/en/articles/6825453/chatgpt-release-notes)
 
 ### Research
 
