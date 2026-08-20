@@ -11,15 +11,15 @@ Version 4 keeps the strongest idea from v3 — **task-specific self-reflection**
 
 ### ⚡ Free & Go — 1,500-character limit
 
-**[→ v4 Compact: 1,436 characters](v4-free.md)**
+**[→ v4 Compact: 1,455 characters](v4-free.md)**
 
 Keeps the core behaviors that fit comfortably inside the smaller limit: task-specific rubric, material-weakness review, stopping rule, evidence preference, adaptive depth, and no mandatory answer ritual.
 
 ### 🧠 Plus / Pro / Business / Enterprise / Education — 5,000-character limit
 
-**[→ v4 Extended: 4,261 characters](v4-5000.md)**
+**[→ v4 Extended: 3,581 characters](v4-5000.md)**
 
-Adds stronger verification rules, context reuse, ambiguity handling, rewriting preservation, validation guidance, and adaptive style/formatting while leaving room for future edits.
+Adds stronger verification rules, context reuse, ambiguity handling, rewriting preservation, validation guidance, and task-adaptive formatting while leaving room for future edits.
 
 ---
 
