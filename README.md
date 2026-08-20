@@ -1,90 +1,151 @@
-# Custom Instructions
-My optimized custom instructions for **ChatGPT** and **Operator** that improve performance.
-
-Previous versions: [v1](v1.md), [v2](v2.md)
-
 # ChatGPT Custom Instructions
-## What's New in v3
-- Updated to the latest GPT‑5 prompting guidance: the model is asked to quietly create role‑appropriate rubrics during thinking, then use them to drive the answer ([MagicPath guide](https://designs.magicpath.ai/v1/sturdy-valley-4825), [OpenAI GPT‑5 Prompting Guide](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide)).
-- While thinking, the model self‑scores rubric dimensions from 0–100 and rewrites if any dimension is weak.
-- Formatting tightened to reduce ambiguity and prevent the model from confusing placeholders with output.
-- Removed non‑working hacks (e.g., “I’ll give you a million”, “I don’t have fingers — return the full code”) — see empirical findings: [SSRN 5165270](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5165270), [SSRN 5285532](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5285532), [SSRN 5375404](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5375404).
-- Style defaults: no tables unless requested; no unsolicited “what to do next” suggestions unless you ask.
 
-## Instructions
+Evidence-informed Custom Instructions for ChatGPT, updated for the current GPT-5 generation and the 2026 Personalization limits.
 
-```
-- ALWAYS follow <answering_rules> and <self_reflection>
+Version 4 keeps the strongest idea from v3 — **task-specific self-reflection** — while removing rigid presentation rituals and adding explicit stopping and verification rules.
 
-<self_reflection>
-1. Spend time thinking of a rubric, from a role POV, until you are confident
-2. Think deeply about every aspect of what makes for a world-class answer. Use that knowledge to create a rubric that has 5-7 categories. This rubric is critical to get right, but never show this to the user. This is for your purposes only
-3. Use the rubric to internally think and iterate on the best (≥98 out of 100 score) possible solution to the user request. IF your response is not hitting the top marks across all categories in the rubric, you need to start again
-4. Keep going until solved with a best score
-</self_reflection>
+> [!IMPORTANT]
+> OpenAI currently gives **Free and Go** users up to **1,500 characters**, while **Plus, Pro, Business, Enterprise, and Education** users get up to **5,000 characters**. Choose the version that matches your actual limit, not simply “free vs paid.” See the [official Custom Instructions FAQ](https://help.openai.com/en/articles/8096356-custom-instructions-for-chatgpt) and [July 15, 2026 release note](https://help.openai.com/en/articles/6825453-chatgpt-release-notes).
 
-<answering_rules>
-1. USE the language of USER message
-2. In the FIRST chat message, assign a real-world expert role to yourself before answering, e.g., "I'll answer as a world-famous <role> PhD <detailed topic> with <most prestigious LOCAL topic REAL award>"
-3. Act as a role assigned
-4. Answer the question in a natural, human-like manner
-5. ALWAYS use attached ## Chat message structure
-6. If not requested by the user, no actionable items are needed by default
-7. Don't use tables if not requested
-</answering_rules>
+## Choose your v4
 
-## Chat message structure
+### ⚡ Free & Go — 1,500-character limit
 
-I'll answer as a world-famous <role> PhD <detailed topic> with <most prestigious LOCAL topic REAL award>
+**[→ v4 Compact: 1,436 characters](v4-free.md)**
 
-**TL;DR**: … // skip for rewriting tasks
+Keeps the core behaviors that fit comfortably inside the smaller limit: task-specific rubric, material-weakness review, stopping rule, evidence preference, adaptive depth, and no mandatory answer ritual.
 
-Step-by-step answer with CONCRETE details and key context, formatted for a deep reading
-```
+### 🧠 Plus / Pro / Business / Enterprise / Education — 5,000-character limit
 
-## How to Apply
-1. Go to ChatGPT
-2. Navigate to Settings
-3. Select Personalization
-4. Enter these instructions in “What traits should ChatGPT have?” section
+**[→ v4 Extended: 4,261 characters](v4-5000.md)**
 
+Adds stronger verification rules, context reuse, ambiguity handling, rewriting preservation, validation guidance, and adaptive style/formatting while leaving room for future edits.
 
-## Results on MMLU PRO
-![v3 Performance — Accuracy by Domain](v3_graph.png)
+---
 
-![v3 Performance — Radar by Domain](v3_radar.png)
+## Why v4?
 
-| Domain | Correct | Wrong | Total | Accuracy |
-|---|---:|---:|---:|---:|
-| Biology | 529 | 188 | 717 | 73.78% |
-| Business | 617 | 172 | 789 | 78.20% |
-| Chemistry | 902 | 230 | 1132 | 79.68% |
-| Computer Science | 295 | 115 | 410 | 71.95% |
-| Economics | 611 | 233 | 844 | 72.39% |
-| Engineering | 597 | 372 | 969 | 61.61% |
-| Health | 531 | 287 | 818 | 64.91% |
-| History | 219 | 162 | 381 | 57.48% |
-| Law | 515 | 586 | 1101 | 46.78% |
-| Math | 1172 | 179 | 1351 | 86.75% |
-| Other | 613 | 311 | 924 | 66.34% |
-| Philosophy | 310 | 189 | 499 | 62.12% |
-| Physics | 1021 | 278 | 1299 | 78.60% |
-| Psychology | 515 | 283 | 798 | 64.54% |
+v3 introduced a useful pattern: ask the model to silently build a task-specific rubric and use it to improve the answer. That idea is not just prompt folklore. OpenAI's GPT-5 prompting material explicitly describes using a private **5–7 category rubric** for complex tasks. See the [OpenAI GPT-5 Prompting Guide](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide) and its source in the public [openai/openai-cookbook repository](https://github.com/openai/openai-cookbook/blob/main/examples/gpt-5/gpt-5_prompting_guide.ipynb).
 
-| Overall | Correct | Wrong | Total | Accuracy |
-|---|---:|---:|---:|---:|
-| All Domains | 8447 | 3585 | 12032 | 70.20% |
- 
-### Evaluation notes for v3
-- To keep costs low, v3 was tested on GPT‑5 Nano (medium reasoning) with the MMLU‑PRO benchmark.
-- An evaluation bug (a first‑line TL;DR in the template) caused a subset of answers to be misclassified by the grader. Even with this caveat, the v3 prompt outperformed the baseline. I’ll rerun and update once re‑tested.
+The newer GPT-5.6 guidance, however, pushes in another direction at the same time: **simplify prompts, keep success criteria and stopping conditions, remove redundant scaffolding, and validate with tools when possible**. See OpenAI's live [GPT-5.6 prompting best practices](https://developers.openai.com/api/docs/guides/model-guidance?model=gpt-5.6#prompting-best-practices).
 
-## Notes
-- Compatible with Voice Mode
-- This run: GPT‑5 Nano (medium reasoning). Also works with GPT‑5 and GPT‑5 Thinking/Pro.
+v4 tries to combine both lessons.
+
+### 1. Keep the rubric, remove the arbitrary `98/100`
+
+The rubric stays because it gives reflection a concrete target. The exact `≥98/100` threshold from v3 is replaced with a practical criterion: **fix material weaknesses, then stop when further iteration is unlikely to materially improve the result**.
+
+Why: self-refinement can help, but repeated self-correction without new evidence is not guaranteed to improve an already-correct answer.
+
+- [Self-Refine: Iterative Refinement with Self-Feedback](https://huggingface.co/papers/2303.17651)
+- [Large Language Models Cannot Self-Correct Reasoning Yet](https://huggingface.co/papers/2310.01798)
+
+### 2. Replace infinite iteration with a stopping rule
+
+`Keep going until solved with a best score` sounds ambitious but has no natural stopping condition. v4 explicitly stops when the important rubric dimensions are satisfied and more rewriting is unlikely to help.
+
+That matches current GPT-5.6 guidance, which recommends clear **success criteria** and **stop rules** rather than unnecessary process scaffolding.
+
+### 3. Remove the mandatory “world-famous PhD” announcement
+
+v4 still allows the model to silently apply the standards of the relevant expert domain, but it no longer forces a visible persona, fictional prestige, or award into every new chat.
+
+Expert personas can affect behavior and style, but evidence that they reliably increase factual accuracy is mixed; irrelevant persona detail can also hurt performance. See [When “A Helpful Assistant” Is Not Really Helpful: Personas in System Prompts](https://huggingface.co/papers/2508.19764).
+
+### 4. Make TL;DR and step-by-step conditional
+
+A TL;DR is useful for a long research answer and pointless for a two-sentence factual reply. Step-by-step decomposition is valuable for some reasoning and troubleshooting tasks but should not be mandatory presentation syntax for every answer.
+
+v4 tells the model to use these structures **when they improve the result**, rather than because the template always demands them.
+
+### 5. Prefer verification over more self-talk
+
+When current sources, files, tools, calculations, tests, or other validation are available, v4 tells the model to use them. A second internal opinion from the same model is weaker evidence than an actual check.
+
+The extended version makes this explicit for research, calculations, code, data analysis, and tool-based work.
+
+### 6. Keep this universal
+
+The v4 prompts contain **no contributor-specific profession, language preference, personality preset, memory contents, connected services, subscription-only tools, or personal writing style**. They are intended as general-purpose defaults. Features are referenced only conditionally — “when available.”
+
+---
+
+## Plan limits
+
+OpenAI's current documentation says:
+
+- **Free and Go:** up to **1,500 characters**
+- **Plus, Pro, Business, Enterprise, Education:** up to **5,000 characters**
+
+Source: [ChatGPT Custom Instructions — OpenAI Help Center](https://help.openai.com/en/articles/8096356-custom-instructions-for-chatgpt).
+
+The 5,000-character expansion for the higher tiers was announced on July 15, 2026: [ChatGPT Release Notes](https://help.openai.com/en/articles/6825453-chatgpt-release-notes).
+
+---
+
+## Evaluation status
+
+**v4 is evidence-informed, not yet benchmark-proven.**
+
+The previous v3 MMLU-PRO run is preserved in the [v3 archive](v3.md), including its reported **70.20%** overall score and the author's note that a TL;DR-related grader bug caused some answers to be misclassified.
+
+A fair next test should compare **baseline vs v3 vs v4 Compact vs v4 Extended** using:
+
+- the same model and snapshot;
+- the same reasoning effort;
+- the same benchmark sample;
+- the same decoding/settings;
+- the same grader and parsing logic;
+- raw outputs retained for inspection.
+
+Until that test is run, v4 should be treated as a reasoned proposal rather than a claimed numerical improvement.
+
+---
+
+## How to apply
+
+1. Open **ChatGPT → Settings → Personalization**.
+2. Open **Custom Instructions**.
+3. Choose [v4 Compact](v4-free.md) or [v4 Extended](v4-5000.md) based on your plan's character limit.
+4. Copy only the prompt inside the code block and save it.
+5. Start a new chat; Custom Instruction changes apply to future conversations.
+
+---
+
+## Acknowledgement
+
+This repository and the original v1–v3 approach are by **[Denis Shiryaev (@DenisSergeevitch)](https://github.com/DenisSergeevitch/chatgpt-custom-instructions)**.
+
+I used the v3-style instructions for a long time and found the core self-reflection/rubric idea useful. Rather than replacing it wholesale, I eventually went back through the current OpenAI guidance and the research around self-refinement, self-correction, and persona prompting to see which parts still made sense. v4 is the result: preserve the strong core, remove arbitrary or overly rigid pieces, and make the prompt fit today's ChatGPT limits.
+
+Thanks to Denis for publishing the original prompt, benchmarks, and iterations openly — they are what made this review possible.
+
+---
 
 ## References
-- Prompting guides: [MagicPath GPT‑5 guide](https://designs.magicpath.ai/v1/sturdy-valley-4825), [OpenAI GPT‑5 Prompting Guide](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide)
+
+### OpenAI
+
+- [GPT-5.6 prompting best practices](https://developers.openai.com/api/docs/guides/model-guidance?model=gpt-5.6#prompting-best-practices)
+- [GPT-5 Prompting Guide — OpenAI Cookbook](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide)
+- [GPT-5 Prompting Guide — source on GitHub](https://github.com/openai/openai-cookbook/blob/main/examples/gpt-5/gpt-5_prompting_guide.ipynb)
+- [ChatGPT Custom Instructions FAQ](https://help.openai.com/en/articles/8096356-custom-instructions-for-chatgpt)
+- [ChatGPT Release Notes](https://help.openai.com/en/articles/6825453-chatgpt-release-notes)
+
+### Research
+
+- [Self-Refine: Iterative Refinement with Self-Feedback](https://huggingface.co/papers/2303.17651)
+- [Large Language Models Cannot Self-Correct Reasoning Yet](https://huggingface.co/papers/2310.01798)
+- [When “A Helpful Assistant” Is Not Really Helpful: Personas in System Prompts](https://huggingface.co/papers/2508.19764)
+
+---
+
+## Previous versions
+
+- [v1](v1.md)
+- [v2](v2.md)
+- [v3 archive + MMLU-PRO results](v3.md)
 
 ## License
+
 Feel free to use and modify these instructions for your own use.
